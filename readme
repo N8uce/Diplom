@@ -1,1 +1,11 @@
-1
+Сначало запустить докер, для быстрого запуска REST каталога + S3 MinIO
+docker-compose up -d
+
+Затем опциональный запуск программы череp бенчмарк
+
+Со всеми ядрами с типом каталога minio
+python benchmark.py --data-size 1700000 --batch-size 100000 --cpus 1 2 3 4 5 6 --iceberg --catalog-type=rest-minio
+Либо psql
+python benchmark.py --data-size 1700000 --batch-size 100000 --cpus 1 2 3 4 5 6 --iceberg --catalog-type=rest-sql
+Ещё есть возможность запуска отчётов (графиков и excel файлов по анализу)
+python benchmark.py --data-size 1700000 --batch-size 100000 --cpus 6 --iceberg --catalog-type=rest-minio --report
